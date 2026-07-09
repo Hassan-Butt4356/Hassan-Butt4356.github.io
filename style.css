@@ -715,11 +715,3 @@ p { margin: 0; }
   .more-grid { grid-template-columns: 1fr; }
   .contact-link { width: 100%; }
 }
-
-
-.visitor-count {
-  margin-top: 14px;
-  display: flex;
-  justify-content: center;
-  opacity: 0.75;
-}
