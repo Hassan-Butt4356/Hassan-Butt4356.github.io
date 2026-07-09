@@ -136,6 +136,29 @@ const FEATURED_PROJECTS = [
     }
   },
   {
+    name: "PixelRAG Hybrid",
+    tag: { en: "Visual RAG Pipeline — Screenshot-Based Retrieval", zh: "视觉 RAG 管道 — 基于截图的检索系统" },
+    tech: ["Python", "PixelRAG", "LLaVA", "Ollama", "LlamaIndex", "ChromaDB", "FAISS", "Qwen3"],
+    desc: {
+      en: "Visual RAG pipeline that screenshots websites using PixelRAG, extracts text via the LLaVA vision model, and answers questions using LlamaIndex + Ollama — no HTML parsing involved.",
+      zh: "基于 PixelRAG 的视觉 RAG 管道：对网页截图后，通过 LLaVA 视觉模型提取文本内容，并结合 LlamaIndex + Ollama 进行问答 — 完全不依赖 HTML 解析。"
+    },
+    bullets: {
+      en: [
+        "Built a Visual RAG system inspired by the PixelRAG research paper (Berkeley SkyLab/BAIR), rendering web pages as screenshots instead of parsing HTML — eliminating 40%+ content loss from traditional scrapers",
+        "Implemented LLaVA:7b via Ollama to transcribe screenshot tiles into structured text, replacing DOM-based extraction with pixel-level reading of JS-rendered content",
+        "Designed a 3-stage incremental pipeline (render → transcribe → index) with SQLite tracking flags enabling resume-on-failure and partial re-processing without data loss",
+        "Deployed fully local/offline — zero cloud API calls; all models (LLaVA, nomic-embed-text, Qwen3) run via Ollama on local hardware"
+      ],
+      zh: [
+        "受 PixelRAG 研究论文（Berkeley SkyLab/BAIR）启发构建视觉 RAG 系统，将网页渲染为截图而非解析 HTML，减少传统爬虫 40% 以上的内容丢失",
+        "通过 Ollama 部署 LLaVA:7b 视觉模型，将截图图块转录为结构化文本，以像素级读取方式处理 JS 渲染内容",
+        "设计三阶段增量管道（渲染 → 转录 → 索引），配合 SQLite 状态标记，支持失败恢复与局部重处理，避免数据丢失",
+        "完全本地离线部署 — 零云端 API 调用；所有模型（LLaVA、nomic-embed-text、Qwen3）均通过 Ollama 在本地硬件运行"
+      ]
+    }
+  },
+  {
     name: "AgentForge",
     tag: { en: "Multi-Tenant Agentic RAG Platform", zh: "多租户智能体 RAG 平台" },
     tech: ["Python", "Django", "DRF", "LlamaIndex", "Ollama", "ChromaDB", "Celery", "Redis", "PostgreSQL", "JWT", "Docker"],

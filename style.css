@@ -471,10 +471,15 @@ p { margin: 0; }
 /* ==========================================================
    PROJECTS — FEATURED
    ========================================================== */
-.featured-grid {
+/* .featured-grid {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   gap: 22px;
+} */
+.featured-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 18px;
 }
 .feat-card {
   background: linear-gradient(160deg, var(--surface) 0%, var(--bg-soft) 100%);
@@ -709,4 +714,12 @@ p { margin: 0; }
   .skills-grid { grid-template-columns: 1fr; }
   .more-grid { grid-template-columns: 1fr; }
   .contact-link { width: 100%; }
+}
+
+
+.visitor-count {
+  margin-top: 14px;
+  display: flex;
+  justify-content: center;
+  opacity: 0.75;
 }
