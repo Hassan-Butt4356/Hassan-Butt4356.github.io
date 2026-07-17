@@ -257,67 +257,210 @@ const MORE_PROJECTS = [
   {
     name: "X-NFT",
     tag: { en: "NFT & Collection Microservice", zh: "NFT 与藏品管理微服务" },
-    tech: ["Django", "DRF", "PostgreSQL", "Pydantic"],
-    desc: { en: "Multi-tenant NFT/Collection microservice integrated with a Solidity blockchain service for mint, buy, transfer, and burn — with OpenSea-style search and filtering.", zh: "多租户 NFT/藏品微服务，与 Solidity 区块链服务集成，支持铸造、购买、转让与销毁，并提供类似 OpenSea 的搜索与筛选功能。" }
+    tech: ["Python", "Django", "DRF", "PostgreSQL", "Pydantic", "Docker"],
+    desc: {
+      en: [
+        "Multi-tenant microservice for NFT and collection management",
+        "Integrated with Solidity blockchain service for mint, buy, transfer, and burn",
+        "OpenSea-style search and filtering for browsing collections",
+        "Built with Django, DRF, and Pydantic for robust data validation"
+      ],
+      zh: [
+        "多租户 NFT 与藏品管理微服务",
+        "与 Solidity 区块链服务集成，支持铸造、购买、转让与销毁",
+        "提供类似 OpenSea 的搜索与筛选功能",
+        "基于 Django、DRF 与 Pydantic 构建，保障数据校验的稳健性"
+      ]
+    }
   },
   {
     name: "PayUni",
     tag: { en: "E-commerce Payment Microservice", zh: "电商支付微服务" },
-    tech: ["Django", "DRF", "PostgreSQL", "JWT"],
-    desc: { en: "Multi-tenant e-commerce microservice with dynamic merchant roles and crypto + fiat payment support via a dedicated payment microservice.", zh: "多租户电商微服务，支持商户自定义角色，并通过独立支付微服务提供加密货币与法币支付支持。" }
+    tech: ["Python", "Django", "DRF", "PostgreSQL", "JWT", "Docker"],
+    desc: {
+      en: [
+        "Multi-tenant e-commerce backend with dynamic merchant roles",
+        "Supports both crypto and fiat payments via dedicated payment microservice",
+        "Secured with JWT-based authentication across all endpoints",
+        "Built with Django, DRF, and PostgreSQL for scalable data handling"
+      ],
+      zh: [
+        "多租户电商后端，支持商户自定义角色",
+        "通过独立支付微服务支持加密货币与法币支付",
+        "所有接口均采用 JWT 身份验证保障安全",
+        "基于 Django、DRF 与 PostgreSQL 构建，支持可扩展的数据处理"
+      ]
+    }
   },
   {
     name: "APIFY",
     tag: { en: "API Marketplace Platform", zh: "API 交易市场平台" },
-    tech: ["Django", "DRF", "Alipay", "WeChat Pay", "PostgreSQL"],
-    desc: { en: "RapidAPI-style marketplace with API/version/pricing management, demand postings, group purchases, and Alipay/WeChat Pay integration.", zh: "类似 RapidAPI 的市场平台，支持 API/版本/定价管理、需求发布、拼团购买，并集成支付宝与微信支付。" }
+    tech: ["Python", "Django", "DRF", "Alipay", "WeChat Pay", "PostgreSQL", "Redis"],
+    desc: {
+      en: [
+        "RapidAPI-style marketplace with API/version/pricing management",
+        "Supports demand postings and group purchases for API access",
+        "Integrated Alipay and WeChat Pay for regional payment coverage",
+        "PostgreSQL-backed system for reliable API catalog management"
+      ],
+      zh: [
+        "类似 RapidAPI 的市场平台，支持 API/版本/定价管理",
+        "支持需求发布与拼团购买 API 访问权限",
+        "集成支付宝与微信支付，覆盖区域支付需求",
+        "基于 PostgreSQL 构建，保障 API 目录管理的可靠性"
+      ]
+    }
   },
   {
     name: { en: "Transport Survey Automation", zh: "交通调查自动化系统" },
     tag: { en: "ETL & Geospatial Automation", zh: "ETL 与地理空间自动化" },
-    tech: ["Python", "Pandas", "HERE API", "AWS S3"],
-    desc: { en: "Pandas-based ETL pipelines with HERE Routing API enrichment — reduced manual data cleaning effort by 70%.", zh: "基于 Pandas 的 ETL 管道，结合 HERE 路线 API 进行数据增强，人工数据清理工作量降低 70%。" }
+    tech: ["Python", "Pandas", "NumPy", "HERE API", "AWS S3"],
+    desc: {
+      en: [
+        "Pandas-based ETL pipelines for large-scale transport survey data",
+        "Enriched with HERE Routing API for geospatial accuracy",
+        "Automated data storage and retrieval via AWS S3",
+        "Reduced manual data cleaning effort by 70%"
+      ],
+      zh: [
+        "基于 Pandas 的 ETL 管道，处理大规模交通调查数据",
+        "结合 HERE 路线 API 进行地理空间数据增强",
+        "通过 AWS S3 实现数据存储与检索自动化",
+        "人工数据清理工作量降低 70%"
+      ]
+    }
   },
   {
     name: { en: "ETC Dashboard", zh: "ETC 数据看板" },
     tag: { en: "Streamlit + Snowflake ETL", zh: "Streamlit + Snowflake ETL" },
-    tech: ["Streamlit", "Snowflake", "AWS S3", "AgGrid", "JWT"],
-    desc: { en: "Secure real-time ETL dashboard with role-based access and AgGrid tables over Snowflake — cut manual data handling by 90%.", zh: "安全的实时 ETL 数据看板，具备角色权限控制与基于 Snowflake 的 AgGrid 表格，人工数据处理工作量降低 90%。" }
+    tech: ["Python", "Streamlit", "Snowflake", "AWS S3", "AgGrid", "JWT"],
+    desc: {
+      en: [
+        "Real-time ETL dashboard with role-based access control",
+        "AgGrid-powered tables running on Snowflake data",
+        "Secured with JWT authentication and AWS S3 integration",
+        "Cut manual data handling effort by 90%"
+      ],
+      zh: [
+        "实时 ETL 数据看板，具备角色权限控制",
+        "基于 Snowflake 数据的 AgGrid 表格展示",
+        "采用 JWT 身份验证并集成 AWS S3",
+        "人工数据处理工作量降低 90%"
+      ]
+    }
   },
   {
     name: { en: "AsifMolBio Lead Platform", zh: "AsifMolBio 获客平台" },
     tag: { en: "Django + Dual Payment Gateways", zh: "Django + 双支付网关" },
-    tech: ["Django", "DRF", "PostgreSQL", "PayPal", "Stripe", "AWS S3"],
-    desc: { en: "Django/DRF backend with dual payment gateways, S3 media handling, and a full admin dashboard — cut API response times by 40%.", zh: "Django/DRF 后端，集成双支付网关与 S3 媒体管理，配备完整管理后台，API 响应时间降低 40%。" }
+    tech: ["Python", "Django", "DRF", "PostgreSQL", "PayPal", "Stripe", "AWS S3"],
+    desc: {
+      en: [
+        "Django/DRF backend with dual payment gateway integration (PayPal + Stripe)",
+        "S3-based media handling for scalable content storage",
+        "Full admin dashboard for managing leads and transactions",
+        "Reduced API response times by 40%"
+      ],
+      zh: [
+        "Django/DRF 后端，集成 PayPal 与 Stripe 双支付网关",
+        "基于 S3 的媒体管理，支持可扩展的内容存储",
+        "配备完整管理后台，用于管理线索与交易",
+        "API 响应时间降低 40%"
+      ]
+    }
   },
   {
     name: "TaskFlowAI",
     tag: { en: "Task Management Platform", zh: "任务管理平台" },
-    tech: ["Django", "PostgreSQL", "JWT", "LangChain", "RAG"],
-    desc: { en: "Modular Django task/project management backend with custom RBAC (Admin/Member) and optimized ORM queries.", zh: "模块化的 Django 任务/项目管理后端，具备自定义角色权限（管理员/成员）与优化的 ORM 查询。" }
+    tech: ["Python", "Django", "PostgreSQL", "JWT", "LangChain", "RAG"],
+    desc: {
+      en: [
+        "Modular Django backend for task and project management",
+        "Custom RBAC system distinguishing Admin and Member roles",
+        "Optimized ORM queries for faster performance at scale",
+        "Integrated LangChain and RAG for AI-assisted task insights"
+      ],
+      zh: [
+        "模块化的 Django 任务与项目管理后端",
+        "自定义角色权限系统，区分管理员与成员",
+        "优化 ORM 查询，提升大规模场景下的性能",
+        "集成 LangChain 与 RAG，提供 AI 辅助任务洞察"
+      ]
+    }
   },
   {
     name: "M-Bizz",
     tag: { en: "AI Marketing Bots", zh: "AI 营销机器人" },
-    tech: ["Django", "LangChain", "OpenAI", "RAG", "Firebase"],
-    desc: { en: "Conversational AI chatbots using LangChain + OpenAI with RAG for domain-specific knowledge and NLP preprocessing pipelines.", zh: "基于 LangChain 与 OpenAI 的对话式 AI 机器人，结合 RAG 提供领域知识，并配备 NLP 预处理管道。" }
+    tech: ["Python", "Django", "LangChain", "OpenAI", "RAG", "Firebase"],
+    desc: {
+      en: [
+        "Conversational AI chatbots built with LangChain + OpenAI",
+        "RAG-based retrieval for domain-specific knowledge responses",
+        "Custom NLP preprocessing pipelines for cleaner inputs",
+        "Firebase integration for real-time data sync and storage"
+      ],
+      zh: [
+        "基于 LangChain 与 OpenAI 构建的对话式 AI 机器人",
+        "采用 RAG 检索技术提供领域知识回答",
+        "自定义 NLP 预处理管道，提升输入数据质量",
+        "集成 Firebase，实现实时数据同步与存储"
+      ]
+    }
   },
   {
     name: { en: "LSTM Text Generation", zh: "LSTM 文本生成" },
     tag: { en: "Self-Learning NLP Project", zh: "自学 NLP 项目" },
-    tech: ["TensorFlow", "Keras", "LSTM", "Pandas"],
-    desc: { en: "LSTM language model trained on 9,000+ NYT headlines to generate news-headline-style text via N-gram sequences.", zh: "基于 9000 余条纽约时报标题训练的 LSTM 语言模型，通过 N-gram 序列生成新闻标题风格文本。" }
+    tech: ["Python", "TensorFlow", "Keras", "LSTM", "Pandas", "NumPy"],
+    desc: {
+      en: [
+        "LSTM language model trained on 9,000+ NYT headlines",
+        "Generates news-headline-style text using N-gram sequences",
+        "Built with TensorFlow and Keras for deep learning implementation",
+        "Self-directed project for exploring sequence generation techniques"
+      ],
+      zh: [
+        "基于 9000 余条纽约时报标题训练的 LSTM 语言模型",
+        "通过 N-gram 序列生成新闻标题风格文本",
+        "使用 TensorFlow 与 Keras 实现深度学习模型",
+        "自主研究项目，探索序列生成技术"
+      ]
+    }
   },
   {
     name: { en: "Flask NLP Chatbot", zh: "Flask NLP 聊天机器人" },
     tag: { en: "Maintenance & Enhancement", zh: "维护与功能增强" },
-    tech: ["Flask", "Stripe", "OpenAI"],
-    desc: { en: "Debugged and hardened an existing Flask chatbot, added Stripe subscriptions, RBAC, and response caching to cut latency.", zh: "修复并加固已有的 Flask 聊天机器人，新增 Stripe 订阅、角色权限控制，并通过响应缓存降低延迟。" }
+    tech: ["Python", "Flask", "Stripe", "OpenAI", "Redis"],
+    desc: {
+      en: [
+        "Debugged and hardened an existing production Flask chatbot",
+        "Added Stripe subscriptions for monetization",
+        "Implemented role-based access control for user management",
+        "Introduced response caching to reduce latency"
+      ],
+      zh: [
+        "修复并加固已有的生产环境 Flask 聊天机器人",
+        "新增 Stripe 订阅功能实现商业化",
+        "实现基于角色的访问控制以管理用户权限",
+        "引入响应缓存机制以降低延迟"
+      ]
+    }
   },
   {
     name: "MD-EXAM",
     tag: { en: "Pharmacy Management System", zh: "药房管理系统" },
-    tech: ["Django", "MongoDB", "Djongo", "ShipStation API"],
-    desc: { en: "Django pharmacy system with MongoDB via Djongo, ShipStation label automation, and daily order-status sync.", zh: "基于 Djongo 集成 MongoDB 的 Django 药房系统，自动生成 ShipStation 运单标签，并每日同步订单状态。" }
+    tech: ["Python", "Django", "MongoDB", "Djongo", "ShipStation API"],
+    desc: {
+      en: [
+        "Django-based pharmacy system using MongoDB via Djongo",
+        "Automated shipping label generation through ShipStation API",
+        "Daily automated sync of order status across the system",
+        "Streamlined pharmacy operations with integrated order tracking"
+      ],
+      zh: [
+        "基于 Djongo 集成 MongoDB 的 Django 药房系统",
+        "通过 ShipStation API 自动生成运单标签",
+        "每日自动同步订单状态",
+        "通过集成订单追踪功能，简化药房运营流程"
+      ]
+    }
   }
 ];
