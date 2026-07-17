@@ -117,67 +117,67 @@ const FEATURED_PROJECTS = [
     tag: { en: "Multi-Agent Local RAG System", zh: "多智能体本地 RAG 系统" },
     tech: ["Python", "LlamaIndex", "Ollama", "ChromaDB", "FAISS", "BM25", "RAGAS", "SQLite"],
     desc: {
-      en: "Fully offline, multi-agent RAG framework orchestrating 6 specialized agents (Document, Chunking, Embedding, Index, Retrieval, Answer, Evaluation) for end-to-end pipeline automation.",
-      zh: "完全离线的多智能体 RAG 框架，编排 6 个专职智能体（文档、分块、嵌入、索引、检索、回答、评估），实现端到端管道自动化。"
+      en: "Fully offline, multi-agent RAG framework orchestrating 6 specialized agents for end-to-end pipeline automation — document ingestion through answer evaluation.",
+      zh: "完全离线的多智能体 RAG 框架，编排 6 个专职智能体，实现从文档处理到答案评估的端到端管道自动化。"
     },
     bullets: {
       en: [
-        "12 chunking strategies (semantic, hierarchical, parent-child, sentence-window) and 12 retrieval strategies (hybrid, RRF, auto-merging, query fusion, multi-query) — runtime-selectable via CLI",
+        "12 chunking strategies and 12 retrieval strategies (hybrid, RRF, auto-merging, query fusion) — runtime-selectable via CLI",
         "Dual vector store support (ChromaDB, FAISS) with automatic index reuse/caching to avoid redundant re-embedding",
         "SQLite-based experiment logging for systematic A/B comparison across configurations",
-        "Integrated RAGAS evaluation (faithfulness, answer relevancy, context precision/recall) using local LLMs as judges — zero cloud API dependency"
+        "RAGAS evaluation (faithfulness, relevancy, context precision/recall) using local LLMs as judges — zero cloud API dependency"
       ],
       zh: [
-        "12 种分块策略（语义、层级、父子、句子窗口）与 12 种检索策略（混合检索、RRF、自动合并、查询融合、多查询），均可通过 CLI 在运行时切换",
+        "12 种分块策略与 12 种检索策略（混合检索、RRF、自动合并、查询融合），均可通过 CLI 在运行时切换",
         "支持双向量存储（ChromaDB、FAISS），并自动复用/缓存索引，避免重复嵌入计算",
         "基于 SQLite 的实验日志系统，用于跨配置的系统化 A/B 对比",
-        "集成 RAGAS 评估体系（忠实度、答案相关性、上下文精确率/召回率），以本地大模型作为评审 — 完全无需云端 API"
+        "集成 RAGAS 评估体系（忠实度、相关性、上下文精确率/召回率），以本地大模型作为评审 — 完全无需云端 API"
       ]
     }
   },
   {
     name: "PixelRAG Hybrid",
-    tag: { en: "Visual RAG Pipeline — Screenshot-Based Retrieval", zh: "视觉 RAG 管道 — 基于截图的检索系统" },
+    tag: { en: "Visual RAG — Screenshot-Based Retrieval", zh: "视觉 RAG — 基于截图的检索系统" },
     tech: ["Python", "PixelRAG", "LLaVA", "Ollama", "LlamaIndex", "ChromaDB", "FAISS", "Qwen3"],
     desc: {
-      en: "Visual RAG pipeline that screenshots websites using PixelRAG, extracts text via the LLaVA vision model, and answers questions using LlamaIndex + Ollama — no HTML parsing involved.",
-      zh: "基于 PixelRAG 的视觉 RAG 管道：对网页截图后，通过 LLaVA 视觉模型提取文本内容，并结合 LlamaIndex + Ollama 进行问答 — 完全不依赖 HTML 解析。"
+      en: "Visual RAG pipeline that screenshots websites, extracts text via the LLaVA vision model, and answers questions using LlamaIndex + Ollama — no HTML parsing involved.",
+      zh: "视觉 RAG 管道：对网页截图后，通过 LLaVA 视觉模型提取文本内容，并结合 LlamaIndex + Ollama 进行问答 — 完全不依赖 HTML 解析。"
     },
     bullets: {
       en: [
-        "Built a Visual RAG system inspired by the PixelRAG research paper (Berkeley SkyLab/BAIR), rendering web pages as screenshots instead of parsing HTML — eliminating 40%+ content loss from traditional scrapers",
-        "Implemented LLaVA:7b via Ollama to transcribe screenshot tiles into structured text, replacing DOM-based extraction with pixel-level reading of JS-rendered content",
-        "Designed a 3-stage incremental pipeline (render → transcribe → index) with SQLite tracking flags enabling resume-on-failure and partial re-processing without data loss",
-        "Deployed fully local/offline — zero cloud API calls; all models (LLaVA, nomic-embed-text, Qwen3) run via Ollama on local hardware"
+        "Renders web pages as screenshots instead of parsing HTML — eliminating 40%+ content loss from traditional scrapers",
+        "LLaVA:7b via Ollama transcribes screenshot tiles into structured text, reading JS-rendered content pixel-by-pixel",
+        "3-stage incremental pipeline (render → transcribe → index) with SQLite flags enabling resume-on-failure",
+        "Deployed fully local/offline — zero cloud API calls; all models run via Ollama on local hardware"
       ],
       zh: [
-        "受 PixelRAG 研究论文（Berkeley SkyLab/BAIR）启发构建视觉 RAG 系统，将网页渲染为截图而非解析 HTML，减少传统爬虫 40% 以上的内容丢失",
-        "通过 Ollama 部署 LLaVA:7b 视觉模型，将截图图块转录为结构化文本，以像素级读取方式处理 JS 渲染内容",
-        "设计三阶段增量管道（渲染 → 转录 → 索引），配合 SQLite 状态标记，支持失败恢复与局部重处理，避免数据丢失",
-        "完全本地离线部署 — 零云端 API 调用；所有模型（LLaVA、nomic-embed-text、Qwen3）均通过 Ollama 在本地硬件运行"
+        "将网页渲染为截图而非解析 HTML，减少传统爬虫 40% 以上的内容丢失",
+        "通过 Ollama 部署 LLaVA:7b 视觉模型，将截图图块转录为结构化文本，逐像素处理 JS 渲染内容",
+        "设计三阶段增量管道（渲染 → 转录 → 索引），配合 SQLite 状态标记支持失败恢复",
+        "完全本地离线部署 — 零云端 API 调用，所有模型均通过 Ollama 在本地硬件运行"
       ]
     }
   },
   {
     name: "AgentForge",
     tag: { en: "Multi-Tenant Agentic RAG Platform", zh: "多租户智能体 RAG 平台" },
-    tech: ["Python", "Django", "DRF", "LlamaIndex", "Ollama", "ChromaDB", "Celery", "Redis", "PostgreSQL", "JWT", "Docker"],
+    tech: ["Python", "Django", "DRF", "LlamaIndex", "Ollama", "ChromaDB", "Celery", "Docker"],
     desc: {
       en: "Open-source platform where each user creates AI agents backed by their own private PDF knowledge bases, with full tenant isolation and a JWT-secured REST API.",
       zh: "开源平台，每位用户都可基于自己私有的 PDF 知识库创建 AI 智能体，具备完整租户隔离与 JWT 安全的 REST API。"
     },
     bullets: {
       en: [
-        "LlamaIndex ReActAgent with QueryEngineTool, letting the LLM autonomously decide whether to retrieve from ChromaDB or answer from parametric knowledge",
-        "Incremental vector indexing and background PDF ingestion via Celery + Redis for non-blocking, real-time agent readiness",
+        "LlamaIndex ReActAgent autonomously decides whether to retrieve from ChromaDB or answer from parametric knowledge",
+        "Incremental vector indexing and background PDF ingestion via Celery + Redis for non-blocking agent readiness",
         "Fully local LLM stack (Ollama + LLaMA3/Mistral) with zero cloud dependency for privacy-first deployments",
-        "Full stack containerized with Docker Compose (Django, Celery, Redis, ChromaDB, PostgreSQL) for one-command reproducibility"
+        "Full stack containerized with Docker Compose (Django, Celery, Redis, ChromaDB, PostgreSQL) for one-command setup"
       ],
       zh: [
-        "基于 LlamaIndex ReActAgent 与 QueryEngineTool，让大模型自主判断是从 ChromaDB 检索还是直接依靠自身知识回答",
+        "基于 LlamaIndex ReActAgent，让大模型自主判断是从 ChromaDB 检索还是直接依靠自身知识回答",
         "通过 Celery + Redis 实现增量向量索引与后台 PDF 处理，保证智能体非阻塞、近实时可用",
         "完全本地化的大模型技术栈（Ollama + LLaMA3/Mistral），零云依赖，适合注重隐私的部署场景",
-        "使用 Docker Compose 对整套服务（Django、Celery、Redis、ChromaDB、PostgreSQL）容器化，一条命令即可复现环境"
+        "使用 Docker Compose 对整套服务容器化（Django、Celery、Redis、ChromaDB、PostgreSQL），一条命令即可部署"
       ]
     }
   },
@@ -186,65 +186,67 @@ const FEATURED_PROJECTS = [
     tag: { en: "LoRA / DoRA on Qwen3-4B", zh: "基于 Qwen3-4B 的 LoRA / DoRA 微调" },
     tech: ["Python", "PEFT", "Transformers", "Qwen3", "GGUF", "Ollama", "PyTorch"],
     desc: {
-      en: "End-to-end fine-tuning pipeline for Qwen3-4B-Instruct on custom PDF datasets — data prep, LoRA/DoRA training, model merging, and GGUF export for local deployment.",
-      zh: "面向 Qwen3-4B-Instruct 的端到端微调流水线，基于自定义 PDF 数据集，覆盖数据准备、LoRA/DoRA 训练、模型合并与 GGUF 导出，用于本地部署。"
+      en: "End-to-end fine-tuning pipeline for Qwen3-4B-Instruct on custom PDF datasets — data prep through local deployment.",
+      zh: "面向 Qwen3-4B-Instruct 的端到端微调流水线，基于自定义 PDF 数据集，覆盖从数据准备到本地部署的全流程。"
     },
     bullets: {
       en: [
         "Implemented DoRA (Weight-Decomposed Low-Rank Adaptation) alongside standard LoRA, toggled via config flag",
-        "PDF-to-training-data conversion script that chunks, cleans, and formats documents into instruction-following pairs",
-        "Exported merged models to GGUF and validated inference quality locally via Ollama — a complete fine-tune-to-deployment loop with no cloud GPU"
+        "PDF-to-training-data script that chunks, cleans, and formats documents into instruction-following pairs",
+        "Exported merged models to GGUF format for quantized, hardware-efficient local deployment",
+        "Validated inference quality locally via Ollama — a complete fine-tune-to-deployment loop with no cloud GPU"
       ],
       zh: [
         "在标准 LoRA 基础上实现 DoRA（权重分解低秩适配），可通过配置开关切换",
         "编写 PDF 转训练数据脚本，对文档进行分块、清洗并格式化为指令跟随数据对",
-        "将合并后的模型导出为 GGUF 格式，并通过 Ollama 在本地验证推理质量 — 完整实现从微调到部署的闭环，无需云端 GPU"
+        "将合并后的模型导出为 GGUF 格式，用于量化后的高效本地部署",
+        "通过 Ollama 在本地验证推理质量 — 完整实现从微调到部署的闭环，无需云端 GPU"
       ]
     }
   },
   {
     name: { en: "Real-Time Voice AI System", zh: "实时语音 AI 系统" },
     tag: { en: "ASR → LLM → TTS Pipeline", zh: "ASR → 大模型 → TTS 全链路" },
-    tech: ["Python", "SenseVoice", "Ollama", "vLLM", "IndexTTS", "WebSockets", "FastAPI", "Docker"],
+    tech: ["Python", "SenseVoice", "Ollama", "vLLM", "IndexTTS", "FastAPI", "Docker"],
     desc: {
-      en: "Production multi-service voice AI pipeline on a Tesla V100S (32GB) GPU server, integrating SenseVoice ASR, Ollama/Qwen3-4B, and IndexTTS 1.5 via vLLM.",
-      zh: "运行在 Tesla V100S（32GB）GPU 服务器上的生产级多服务语音 AI 管道，集成 SenseVoice 语音识别、Ollama/Qwen3-4B 推理与基于 vLLM 的 IndexTTS 1.5 语音合成。"
+      en: "Production multi-service voice AI pipeline on a Tesla V100S GPU server, integrating ASR, LLM inference, and TTS via vLLM.",
+      zh: "运行在 Tesla V100S GPU 服务器上的生产级多服务语音 AI 管道，集成语音识别、大模型推理与基于 vLLM 的语音合成。"
     },
     bullets: {
       en: [
-        "FastAPI orchestration layer managing the full ASR → LLM → TTS flow with SQLite-backed conversation memory, coordinating 3 tmux-managed microservices",
-        "Sentence-level response chunking with a TTSSequenceManager to stream ordered, low-latency audio back to clients",
-        "Converted IndexTTS 1.5 from ModelScope to vLLM/HuggingFace format and tuned GPU memory utilization (25%) to run TTS alongside Ollama within a 32GB VRAM budget"
+        "FastAPI orchestration layer manages the full ASR → LLM → TTS flow, coordinating 3 tmux-managed microservices",
+        "Sentence-level response chunking with a TTSSequenceManager streams ordered, low-latency audio to clients",
+        "Converted IndexTTS 1.5 from ModelScope to vLLM/HuggingFace format for high-speed speech synthesis",
+        "Tuned GPU memory utilization to 25%, running TTS alongside Ollama within a 32GB VRAM budget"
       ],
       zh: [
-        "基于 FastAPI 构建编排层，管理完整的 ASR → 大模型 → TTS 流程，配合 SQLite 对话记忆，协调 3 个通过 tmux 管理的微服务",
+        "基于 FastAPI 构建编排层，管理完整的 ASR → 大模型 → TTS 流程，协调 3 个通过 tmux 管理的微服务",
         "实现句子级响应分块与 TTSSequenceManager，向客户端流式返回有序、低延迟的音频",
-        "将 IndexTTS 1.5 从 ModelScope 格式转换为 vLLM/HuggingFace 格式，并调优 GPU 显存占用（25%），使 TTS 与 Ollama 在 32GB 显存预算内共存运行"
+        "将 IndexTTS 1.5 从 ModelScope 格式转换为 vLLM/HuggingFace 格式，实现高速语音合成",
+        "将 GPU 显存占用调优至 25%，使 TTS 与 Ollama 在 32GB 显存预算内共存运行"
       ]
     }
   },
   {
     name: "SentinelRAG",
     tag: { en: "Local Guarded RAG System", zh: "本地安全防护型 RAG 系统" },
-    tech: ["Python", "LlamaIndex", "Ollama", "ChromaDB", "FastAPI", "RAGAS", "DeepEval", "PyMuPDF"],
+    tech: ["Python", "LlamaIndex", "Ollama", "ChromaDB", "FastAPI", "RAGAS", "DeepEval"],
     desc: {
-      en: "A fully local, agentic RAG system with hybrid dense/sparse retrieval, structure-preserving OCR, document deduplication, and a security guardrails layer — evaluated end-to-end against a fully local judge model.",
-      zh: "完全本地化的智能体式 RAG 系统，具备混合密集/稀疏检索、结构保留式 OCR、文档去重机制以及安全防护层 — 使用完全本地的评审模型进行端到端评估。"
+      en: "A fully local, agentic RAG system with hybrid retrieval, structure-preserving OCR, deduplication, and a security guardrails layer.",
+      zh: "完全本地化的智能体式 RAG 系统，具备混合检索、结构保留式 OCR、文档去重机制以及安全防护层。"
     },
     bullets: {
       en: [
-        "Built a fully local, agentic RAG pipeline (LlamaIndex Workflows + Ollama) with zero external LLM API dependency, using hybrid dense + BM25 retrieval fused via reciprocal rank fusion",
-        "Designed a 3-layer deduplication system (file-hash, MinHash near-duplicate detection, embedding-based chunk similarity) with a persistent registry surviving across sessions",
-        "Implemented a structure-preserving OCR pipeline that auto-detects tables/images per PDF page and routes them through a vision-language model, converting tables to Markdown to preserve row/column relationships",
-        "Engineered a guardrails layer covering prompt injection detection (including indirect injection from retrieved documents), PII redaction, and metadata-based role access control (RBAC)",
-        "Built a hallucination-guard step using LLM-as-judge grounding checks with automatic answer regeneration when confidence fell below threshold"
+        "Fully local agentic pipeline (LlamaIndex Workflows + Ollama) using hybrid dense + BM25 retrieval fused via RRF",
+        "3-layer deduplication (file-hash, MinHash, embedding similarity) with a persistent cross-session registry",
+        "Structure-preserving OCR routes tables/images per PDF page through a vision-language model into Markdown",
+        "Guardrails layer (prompt-injection detection, PII redaction, RBAC) plus LLM-as-judge hallucination guard with auto-regeneration"
       ],
       zh: [
-        "构建完全本地的智能体式 RAG 管道（LlamaIndex Workflows + Ollama），零外部大模型 API 依赖，采用混合密集检索 + BM25，并通过倒数排名融合进行结果合并",
-        "设计三层去重系统（文件哈希、MinHash 近重复检测、基于嵌入的分块相似度），配合持久化注册表实现跨会话去重",
-        "实现结构保留式 OCR 管道，自动检测 PDF 页面中的表格与图像并交由视觉语言模型处理，将表格转换为 Markdown 以保留行列关系",
-        "构建安全防护层，涵盖提示注入检测（包括来自检索文档的间接注入）、PII 脱敏，以及基于元数据的角色访问控制（RBAC）",
-        "构建幻觉防护步骤，使用大模型评审进行依据性检查，当置信度低于阈值时自动重新生成答案"
+        "完全本地的智能体式管道（LlamaIndex Workflows + Ollama），采用混合密集检索 + BM25，并通过 RRF 融合结果",
+        "三层去重系统（文件哈希、MinHash、嵌入相似度），配合持久化注册表实现跨会话去重",
+        "结构保留式 OCR，将 PDF 中的表格/图像交由视觉语言模型处理并转换为 Markdown",
+        "安全防护层（提示注入检测、PII 脱敏、RBAC）加上大模型评审幻觉防护机制，支持自动重新生成答案"
       ]
     }
   },
