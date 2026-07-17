@@ -222,7 +222,32 @@ const FEATURED_PROJECTS = [
         "将 IndexTTS 1.5 从 ModelScope 格式转换为 vLLM/HuggingFace 格式，并调优 GPU 显存占用（25%），使 TTS 与 Ollama 在 32GB 显存预算内共存运行"
       ]
     }
-  }
+  },
+  {
+    name: "SentinelRAG",
+    tag: { en: "Local Guarded RAG System", zh: "本地安全防护型 RAG 系统" },
+    tech: ["Python", "LlamaIndex", "Ollama", "ChromaDB", "FastAPI", "RAGAS", "DeepEval", "PyMuPDF"],
+    desc: {
+      en: "A fully local, agentic RAG system with hybrid dense/sparse retrieval, structure-preserving OCR, document deduplication, and a security guardrails layer — evaluated end-to-end against a fully local judge model.",
+      zh: "完全本地化的智能体式 RAG 系统，具备混合密集/稀疏检索、结构保留式 OCR、文档去重机制以及安全防护层 — 使用完全本地的评审模型进行端到端评估。"
+    },
+    bullets: {
+      en: [
+        "Built a fully local, agentic RAG pipeline (LlamaIndex Workflows + Ollama) with zero external LLM API dependency, using hybrid dense + BM25 retrieval fused via reciprocal rank fusion",
+        "Designed a 3-layer deduplication system (file-hash, MinHash near-duplicate detection, embedding-based chunk similarity) with a persistent registry surviving across sessions",
+        "Implemented a structure-preserving OCR pipeline that auto-detects tables/images per PDF page and routes them through a vision-language model, converting tables to Markdown to preserve row/column relationships",
+        "Engineered a guardrails layer covering prompt injection detection (including indirect injection from retrieved documents), PII redaction, and metadata-based role access control (RBAC)",
+        "Built a hallucination-guard step using LLM-as-judge grounding checks with automatic answer regeneration when confidence fell below threshold"
+      ],
+      zh: [
+        "构建完全本地的智能体式 RAG 管道（LlamaIndex Workflows + Ollama），零外部大模型 API 依赖，采用混合密集检索 + BM25，并通过倒数排名融合进行结果合并",
+        "设计三层去重系统（文件哈希、MinHash 近重复检测、基于嵌入的分块相似度），配合持久化注册表实现跨会话去重",
+        "实现结构保留式 OCR 管道，自动检测 PDF 页面中的表格与图像并交由视觉语言模型处理，将表格转换为 Markdown 以保留行列关系",
+        "构建安全防护层，涵盖提示注入检测（包括来自检索文档的间接注入）、PII 脱敏，以及基于元数据的角色访问控制（RBAC）",
+        "构建幻觉防护步骤，使用大模型评审进行依据性检查，当置信度低于阈值时自动重新生成答案"
+      ]
+    }
+  },
 ];
 
 // Smaller / backend-focused projects
