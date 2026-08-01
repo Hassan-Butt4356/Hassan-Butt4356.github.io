@@ -113,6 +113,30 @@ const EXPERIENCE = [
 // Featured, larger AI/LLM projects
 const FEATURED_PROJECTS = [
   {
+    name: "GuardPipe",
+    tag: { en: "Open-Source AI Guardrails Middleware", zh: "开源 AI 安全防护中间件" },
+    link: "https://pypi.org/project/guardpipe/",
+    tech: ["Python", "Pydantic", "FastAPI", "LangChain", "LlamaIndex", "OpenAI SDK", "Redis"],
+    desc: {
+      en: "Published guardpipe on PyPI — security middleware that checks every prompt and response going in and out of an LLM for injection, jailbreaks, PII, and toxic content.",
+      zh: "在 PyPI 上发布的 guardpipe 安全中间件，对每一次进出大模型的提示词与响应进行检测，识别提示注入、越狱攻击、PII 与有害内容。"
+    },
+    bullets: {
+      en: [
+        "Built and published guardpipe on PyPI, catching prompt injection, jailbreak attempts, PII, and toxic content on every request",
+        "One-line integration for OpenAI, Anthropic, Ollama, LangChain, LlamaIndex, FastAPI, Flask, and Django via a single guard.wrap(client) call",
+        "Included role-based access control, rate limiting, and audit logging, making it usable in real production apps rather than just demos",
+        "Wrote 36 automated tests (all passing) and set up GitHub Actions for continuous testing and automatic PyPI publishing"
+      ],
+      zh: [
+        "构建并发布 guardpipe 到 PyPI，可检测每次请求中的提示注入、越狱攻击、PII 与有害内容",
+        "为 OpenAI、Anthropic、Ollama、LangChain、LlamaIndex、FastAPI、Flask、Django 提供一行代码集成，仅需调用 guard.wrap(client)",
+        "内置角色权限控制、速率限制与审计日志，可用于真实生产环境而不仅是演示",
+        "编写 36 个自动化测试（全部通过），并配置 GitHub Actions 实现持续测试与自动发布至 PyPI"
+      ]
+    }
+  },
+  {
     name: "RAGForge",
     tag: { en: "Multi-Agent Local RAG System", zh: "多智能体本地 RAG 系统" },
     tech: ["Python", "LlamaIndex", "Ollama", "ChromaDB", "FAISS", "BM25", "RAGAS", "SQLite"],

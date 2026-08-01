@@ -496,6 +496,17 @@ p { margin: 0; }
   color: var(--accent);
   margin-bottom: 16px;
 }
+.feat-link {
+  display: inline-block;
+  font-size: 15px;
+  color: var(--accent);
+  margin-left: 8px;
+  vertical-align: middle;
+  transition: transform 0.2s ease;
+}
+.feat-link:hover {
+  transform: translate(2px, -2px);
+}
 .feat-desc {
   color: var(--text-muted);
   font-size: 15px;
