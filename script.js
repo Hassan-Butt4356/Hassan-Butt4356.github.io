@@ -119,12 +119,13 @@
       card.className = "feat-card reveal";
       card.style.setProperty("--d", (i % 2) * 0.1 + "s");
       const bullets = currentLang === "zh" ? p.bullets.zh : p.bullets.en;
-      const linkHtml = p.link
-              ? `<a class="feat-link" href="${p.link}" target="_blank" rel="noopener">↗</a>`
-              : "";
+      const links = [
+        p.link ? `<a class="feat-link" href="${p.link}" target="_blank" rel="noopener" title="PyPI">📦</a>` : "",
+        p.demoLink ? `<a class="feat-link" href="${p.demoLink}" target="_blank" rel="noopener" title="Live Demo">▶</a>` : ""
+      ].join("");
       card.innerHTML = `
         <div class="feat-head">
-          <h3>${pick(p.name)} ${linkHtml}</h3>
+          <h3>${pick(p.name)} ${links}</h3>
           <p class="feat-tag">${pick(p.tag)}</p>
         </div>
         <p class="feat-desc">${pick(p.desc)}</p>

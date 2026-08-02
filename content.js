@@ -116,7 +116,8 @@ const FEATURED_PROJECTS = [
     name: "GuardPipe",
     tag: { en: "Open-Source AI Guardrails Middleware", zh: "开源 AI 安全防护中间件" },
     link: "https://pypi.org/project/guardpipe/",
-    tech: ["Python", "Pydantic", "FastAPI", "LangChain", "LlamaIndex", "OpenAI SDK", "Redis"],
+    demoLink: "https://huggingface.co/spaces/hassanButt/guardpipe-demo",
+    tech: ["Python", "Pydantic", "FastAPI", "LangChain", "LlamaIndex", "OpenAI SDK", "Gradio"],
     desc: {
       en: "Published guardpipe on PyPI — security middleware that checks every prompt and response going in and out of an LLM for injection, jailbreaks, PII, and toxic content.",
       zh: "在 PyPI 上发布的 guardpipe 安全中间件，对每一次进出大模型的提示词与响应进行检测，识别提示注入、越狱攻击、PII 与有害内容。"
@@ -126,13 +127,13 @@ const FEATURED_PROJECTS = [
         "Built and published guardpipe on PyPI, catching prompt injection, jailbreak attempts, PII, and toxic content on every request",
         "One-line integration for OpenAI, Anthropic, Ollama, LangChain, LlamaIndex, FastAPI, Flask, and Django via a single guard.wrap(client) call",
         "Included role-based access control, rate limiting, and audit logging, making it usable in real production apps rather than just demos",
-        "Wrote 36 automated tests (all passing) and set up GitHub Actions for continuous testing and automatic PyPI publishing"
+        "Deployed an interactive Hugging Face Space demo letting users test the guardrails live in-browser against real prompt injection, PII, and jailbreak attempts"
       ],
       zh: [
         "构建并发布 guardpipe 到 PyPI，可检测每次请求中的提示注入、越狱攻击、PII 与有害内容",
         "为 OpenAI、Anthropic、Ollama、LangChain、LlamaIndex、FastAPI、Flask、Django 提供一行代码集成，仅需调用 guard.wrap(client)",
         "内置角色权限控制、速率限制与审计日志，可用于真实生产环境而不仅是演示",
-        "编写 36 个自动化测试（全部通过），并配置 GitHub Actions 实现持续测试与自动发布至 PyPI"
+        "部署交互式 Hugging Face Space 演示，用户可在浏览器中实时测试防护效果，涵盖真实的提示注入、PII 与越狱攻击场景"
       ]
     }
   },
