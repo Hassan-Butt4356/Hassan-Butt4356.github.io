@@ -112,6 +112,29 @@ const EXPERIENCE = [
 
 // Featured, larger AI/LLM projects
 const FEATURED_PROJECTS = [
+    {
+    name: { en: "Local AI Voice Assistant", zh: "本地 AI 语音助手" },
+    tag: { en: "Privacy-First Voice Cloning Assistant", zh: "隐私优先的语音克隆助手" },
+    tech: ["Python", "Flask", "Ollama", "FunASR", "Pocket TTS"],
+    desc: {
+      en: "A fully local, privacy-first voice assistant combining a locally-hosted LLM, speech-to-text, and voice-cloning TTS — with zero dependency on cloud APIs.",
+      zh: "完全本地化、隐私优先的语音助手，集成本地大模型、语音识别与声音克隆语音合成 — 完全不依赖云端 API。"
+    },
+    bullets: {
+      en: [
+        "Integrated a locally-hosted LLM (Ollama), speech-to-text (FunASR), and voice-cloning TTS (Kyutai Pocket TTS) with zero cloud dependency",
+        "Real-time voice cloning: users record a short in-browser sample, converted into a reusable speaker embedding to personalize all future TTS output",
+        "Built a Flask REST API (/api/chat, /api/clone-voice, /api/use-voice, /api/voices) with a browser client using MediaRecorder for live mic capture",
+        "Solved cross-platform audio compatibility with an ffmpeg-based pipeline decoding browser WebM/Opus audio, with no system-wide ffmpeg install required"
+      ],
+      zh: [
+        "集成本地部署的大模型（Ollama）、语音识别（FunASR）与声音克隆语音合成（Kyutai Pocket TTS），完全不依赖云端",
+        "实现实时声音克隆：用户在浏览器中录制简短语音样本，转换为可复用的说话人嵌入，用于个性化后续所有语音合成输出",
+        "构建 Flask REST API（/api/chat、/api/clone-voice、/api/use-voice、/api/voices），并使用 MediaRecorder 实现浏览器端实时录音的客户端",
+        "通过基于 ffmpeg 的转换管道解决跨平台音频格式兼容问题，可解码浏览器录制的 WebM/Opus 音频，无需系统级安装 ffmpeg"
+      ]
+    }
+  },
   {
     name: "GuardPipe",
     tag: { en: "Open-Source AI Guardrails Middleware", zh: "开源 AI 安全防护中间件" },
