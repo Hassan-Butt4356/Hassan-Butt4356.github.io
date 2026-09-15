@@ -51,6 +51,25 @@ const SKILLS = [
 ];
 
 const EXPERIENCE = [
+    {
+    date: "Mar 2026 – Present",
+    company: "Obsidian Realm Technologies", location: { en: "Guangzhou, China", zh: "中国 · 广州" },
+    role: { en: "AI Engineer", zh: "AI 工程师" },
+    bullets: {
+      en: [
+        "Designed and deployed LLM-based RAG and agentic AI solutions using Python, FastAPI, LangChain, and LlamaIndex",
+        "Built document processing, chunking, embedding, and retrieval pipelines for knowledge-based AI applications",
+        "Deployed local/open-source models via Ollama and vLLM, optimizing GPU utilization and inference performance",
+        "Developed backend APIs integrating AI models with existing applications, databases, and third-party services"
+      ],
+      zh: [
+        "使用 Python、FastAPI、LangChain 与 LlamaIndex 设计并部署基于大模型的 RAG 与智能体式 AI 解决方案",
+        "为知识型 AI 应用构建文档处理、分块、嵌入与检索管道",
+        "通过 Ollama 与 vLLM 部署本地/开源模型，优化 GPU 利用率与推理性能",
+        "开发后端 API，将 AI 模型与现有应用、数据库及第三方服务集成"
+      ]
+    }
+  },
   {
     date: "Jun 2025 – Jan 2026",
     company: "QubitDance", location: { en: "Chengdu, China", zh: "中国 · 成都" },
