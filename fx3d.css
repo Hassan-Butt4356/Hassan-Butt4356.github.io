@@ -1,0 +1,76 @@
+/* ==========================================================
+   3D LAYER (optional)
+   Everything 3D lives in fx3d.css + fx3d.js. To turn it off,
+   delete the two lines marked "3D layer" in index.html.
+   Rules only apply when fx3d.js adds .fx3d to <html>.
+   ========================================================== */
+
+/* ---------- 1. tilt + shine ---------- */
+.fx3d .cat-card,
+.fx3d .metric,
+.fx3d .skill-card,
+.fx3d .edu-col,
+.fx3d .pd-feature,
+.fx3d .portrait-frame,
+.fx3d .door {
+  --rx: 0deg; --ry: 0deg; --lift: 0px;
+  position: relative;
+  transform: perspective(1000px) rotateX(var(--rx)) rotateY(var(--ry)) translateY(var(--lift));
+  transform-style: preserve-3d;
+  transition: transform .6s cubic-bezier(.2,.8,.2,1), border-color .3s, box-shadow .3s;
+}
+.fx3d .is-tilting { transition-duration: .12s, .3s, .3s; }
+.fx3d .cat-card:hover { --lift: -6px; transform: perspective(1000px) rotateX(var(--rx)) rotateY(var(--ry)) translateY(var(--lift)); }
+.fx3d .door { position: relative; }
+
+/* light that follows the mouse across the surface */
+.fx3d .cat-card::after,
+.fx3d .metric::after,
+.fx3d .skill-card::after,
+.fx3d .edu-col::after,
+.fx3d .pd-feature::after,
+.fx3d .portrait-frame::after {
+  content: ""; position: absolute; inset: 0; border-radius: inherit; pointer-events: none; z-index: 3;
+  background: radial-gradient(420px circle at var(--mx, 50%) var(--my, 50%), rgba(255, 255, 255, .11), transparent 45%);
+  opacity: 0; transition: opacity .35s;
+}
+html.fx3d[data-theme="light"] .cat-card::after,
+html.fx3d[data-theme="light"] .metric::after,
+html.fx3d[data-theme="light"] .skill-card::after,
+html.fx3d[data-theme="light"] .edu-col::after,
+html.fx3d[data-theme="light"] .pd-feature::after,
+html.fx3d[data-theme="light"] .portrait-frame::after {
+  background: radial-gradient(420px circle at var(--mx, 50%) var(--my, 50%), rgba(255, 255, 255, .7), transparent 45%);
+}
+.fx3d .is-tilting::after { opacity: 1; }
+
+/* parts that float above their card */
+.fx3d .metric b,
+.fx3d .pd-feature b { transform: translateZ(28px); }
+.fx3d .skill-card h3 { transform: translateZ(18px); }
+
+/* ---------- 2. doors room depth ---------- */
+.fx3d .doors-stage { --px: 0; --py: 0; }
+.fx3d .doors-row {
+  transform: translate3d(calc(var(--px) * -12px), calc(var(--py) * -6px), 0);
+  transition: transform .5s cubic-bezier(.2,.8,.2,1);
+}
+.fx3d .doors-stage::before {
+  background: radial-gradient(600px 260px at calc(50% + var(--px) * 60px) calc(0% + var(--py) * 30px), rgba(255,255,255,.07), transparent 70%);
+}
+.fx3d .door-floor { position: relative; }
+.fx3d .door-floor::after { /* perspective floor grid */
+  content: ""; position: absolute; left: -20%; right: -20%; top: 0; height: 320px; pointer-events: none;
+  transform: perspective(420px) rotateX(62deg); transform-origin: top center;
+  background:
+    repeating-linear-gradient(90deg, var(--line-strong) 0 1px, transparent 1px 64px),
+    repeating-linear-gradient(0deg, var(--line) 0 1px, transparent 1px 48px);
+  -webkit-mask-image: linear-gradient(#000, transparent 75%);
+  mask-image: linear-gradient(#000, transparent 75%);
+  opacity: .9;
+}
+.fx3d .door-panel { z-index: 1; }
+
+@media (prefers-reduced-motion: reduce) {
+  .fx3d .doors-row { transform: none; }
+}

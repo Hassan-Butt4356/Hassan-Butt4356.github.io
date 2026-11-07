@@ -1,38 +1,56 @@
 <!DOCTYPE html>
-<html lang="en" data-lang="en">
+<html lang="en" data-lang="en" data-theme="dark">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Muhammad Hassan Haider — AI/LLM &amp; Backend Engineer</title>
-<meta name="description" content="Muhammad Hassan Haider — AI/LLM Engineer and Python Backend Engineer. RAG systems, agentic AI, LLM fine-tuning, and scalable Django/FastAPI backends.">
+<title>Muhammad Hassan Haider — Full Stack AI/LLM &amp; Backend Developer</title>
+<meta name="description" content="Muhammad Hassan Haider — Full Stack AI/LLM and Backend Developer. RAG systems, agentic AI, LLM fine-tuning, Django/FastAPI backends and React/Next.js frontends.">
 <link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png">
 <link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png">
 <link rel="apple-touch-icon" href="apple-touch-icon.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&family=Noto+Sans+SC:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,600;12..96,700;12..96,800&family=Manrope:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&family=Noto+Sans+SC:wght@400;500;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="style.css">
+<link rel="stylesheet" href="fx3d.css"> <!-- 3D layer (delete this line + fx3d.js line to remove) -->
+<script>
+  /* set theme before paint to avoid a flash */
+  (function () {
+    var t = null;
+    try { t = localStorage.getItem("hh-theme"); } catch (e) {}
+    if (!t) t = window.matchMedia && window.matchMedia("(prefers-color-scheme: light)").matches ? "light" : "dark";
+    document.documentElement.setAttribute("data-theme", t);
+  })();
+</script>
 </head>
 <body>
 
-<!-- ambient token grid background -->
-<canvas id="bgCanvas"></canvas>
-
-<div class="progress-rail"><div class="progress-fill" id="progressFill"></div></div>
+<!-- Swarm Rebuild: agents + selection boxes live here (document coordinates) -->
+<div id="swLayer" class="sw-layer" aria-hidden="true"></div>
 
 <header class="site-header" id="siteHeader">
   <div class="header-inner">
-    <a href="#top" class="logo">M<span class="logo-dot">.</span>HH</a>
-    <nav class="main-nav" id="mainNav">
-      <a href="#about" data-en="About" data-zh="关于">About</a>
+    <a href="#top" class="logo" data-sw>M<span class="logo-dot">.</span>HH</a>
+    <nav class="main-nav" id="mainNav" data-sw>
+      <a href="#top" data-en="Home" data-zh="首页">Home</a>
+      <a href="#work" data-en="Work" data-zh="作品">Work</a>
+      <a href="#index" data-en="All projects" data-zh="全部项目">All projects</a>
       <a href="#skills" data-en="Stack" data-zh="技术栈">Stack</a>
-      <a href="#experience" data-en="Experience" data-zh="经历">Experience</a>
-      <a href="#projects" data-en="Projects" data-zh="项目">Projects</a>
-      <a href="#education" data-en="Education" data-zh="教育">Education</a>
+      <a href="#experience" data-en="My story" data-zh="我的经历">My story</a>
       <a href="#contact" data-en="Contact" data-zh="联系">Contact</a>
     </nav>
     <div class="header-actions">
-      <button id="langToggle" class="lang-toggle" aria-label="Toggle language">
+      <div class="clock-pill" data-sw title="Hassan's local time (China)">
+        <span class="clock-k" data-en="Local time" data-zh="当地时间">Local time</span>
+        <span class="clock-v" id="clockTime">--:--</span>
+        <span class="clock-sep">·</span>
+        <span class="clock-d" id="clockDate"></span>
+      </div>
+      <button id="themeToggle" class="theme-toggle" type="button" aria-label="Switch to light mode" title="Light / dark mode">
+        <svg class="ico-sun" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4.2"/><path d="M12 2.5v2.2M12 19.3v2.2M4.6 4.6l1.6 1.6M17.8 17.8l1.6 1.6M2.5 12h2.2M19.3 12h2.2M4.6 19.4l1.6-1.6M17.8 6.2l1.6-1.6"/></svg>
+        <svg class="ico-moon" viewBox="0 0 24 24" aria-hidden="true"><path d="M20.3 14.6A8.3 8.3 0 0 1 9.4 3.7a8.3 8.3 0 1 0 10.9 10.9z"/></svg>
+      </button>
+      <button id="langToggle" class="lang-toggle" data-sw aria-label="Toggle language">
         <span class="lang-opt lang-en active">EN</span><span class="lang-sep">/</span><span class="lang-opt lang-zh">中</span>
       </button>
       <button class="nav-burger" id="navBurger" aria-label="Open menu"><span></span><span></span><span></span></button>
@@ -40,118 +58,125 @@
   </div>
 </header>
 
+<!-- Pull cord: toggles light / dark -->
+<button class="pull-cord" id="pullCord" aria-label="Pull to switch light / dark theme" title="Pull me">
+  <span class="cord-line"></span><span class="cord-knob"></span>
+</button>
+
 <main id="top">
 
   <!-- ============ HERO ============ -->
   <section class="hero">
-    <div class="hero-inner">
-      <p class="hero-eyebrow" data-en="PYTHON BACKEND → AI/LLM ENGINEER" data-zh="Python 后端 → AI/LLM 工程师">PYTHON BACKEND → AI/LLM ENGINEER</p>
-      <h1 class="hero-title">
-        <span class="hero-name">Muhammad Hassan Haider</span>
+    <div class="hero-copy">
+      <p class="hero-eyebrow" data-sw><span class="pulse-dot"></span><span data-en="Full Stack AI/LLM &amp; Backend Developer" data-zh="全栈 AI/大模型与后端开发者">Full Stack AI/LLM &amp; Backend Developer</span></p>
+      <h1 class="hero-title" data-sw>
+        <span class="hero-hi" data-en="Hi, I'm Hassan." data-zh="你好，我是 Hassan。">Hi, I'm Hassan.</span>
+        <span class="hero-iam" data-en="I am a" data-zh="我是一名">I am a</span>
       </h1>
-      <div class="hero-stream" aria-hidden="false">
-        <span class="stream-prompt">&gt;</span>
-        <span class="stream-text" id="streamText"></span><span class="stream-cursor">▍</span>
+      <div class="flip-wrap" data-sw>
+        <div class="flip-rings" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div>
+        <div class="flip-card" id="flipCard">
+          <span class="flip-text" id="flipText">AI/LLM Engineer</span>
+          <span class="flip-count" id="flipCount">01 / 05</span>
+        </div>
+        <div class="flip-stack" aria-hidden="true"></div>
       </div>
-      <p class="hero-desc" data-en="I design and ship Retrieval-Augmented Generation systems, agentic AI workflows, and locally-hosted LLM pipelines — wired into production-grade Django, DRF, and FastAPI backends that don't need the cloud to think and don't fall over under load." data-zh="我构建检索增强生成（RAG）系统、智能体式 AI 工作流以及本地化部署的大模型推理管道，并将其接入生产级的 Django、DRF 与 FastAPI 后端 — 无需依赖云端即可保持智能，在高负载下依然稳定运行。">
-        I design and ship Retrieval-Augmented Generation systems, agentic AI workflows, and locally-hosted LLM pipelines — wired into production-grade Django, DRF, and FastAPI backends that don't need the cloud to think and don't fall over under load.
+      <p class="hero-desc" data-sw data-en="I ship RAG systems, agentic AI and locally-hosted LLM pipelines — wired into Django/FastAPI backends and React/Next.js frontends that don't need the cloud to think and don't fall over under load." data-zh="我构建 RAG 系统、智能体式 AI 与本地部署的大模型管道，并将其接入 Django/FastAPI 后端与 React/Next.js 前端 — 无需依赖云端即可保持智能，在高负载下依然稳定。">
+        I ship RAG systems, agentic AI and locally-hosted LLM pipelines — wired into Django/FastAPI backends and React/Next.js frontends that don't need the cloud to think and don't fall over under load.
       </p>
-      <div class="hero-ctas">
-        <a href="#projects" class="btn btn-primary" data-en="View projects" data-zh="查看项目">View projects</a>
-        <a href="Hassan_Haider_Resume.pdf" class="btn btn-ghost" download data-en="Download résumé" data-zh="下载简历">Download résumé</a>
-        <a href="https://github.com/Hassan-Butt4356" target="_blank" rel="noopener" class="btn btn-ghost" data-en="GitHub ↗" data-zh="GitHub ↗">GitHub ↗</a>
-      </div>
-      <div class="hero-stats">
-        <div class="stat"><span class="stat-num">4+</span><span class="stat-label" data-en="years experience" data-zh="年经验">years experience</span></div>
-        <div class="stat"><span class="stat-num">18</span><span class="stat-label" data-en="production projects" data-zh="上线项目">production projects</span></div>
-        <div class="stat"><span class="stat-num">70–90%</span><span class="stat-label" data-en="manual effort reduced" data-zh="人工效率提升">manual effort reduced</span></div>
-        <div class="stat"><span class="stat-num">0</span><span class="stat-label" data-en="cloud dependency (RAGForge)" data-zh="云依赖（RAGForge）">cloud dependency (RAGForge)</span></div>
+      <div class="hero-ctas" data-sw>
+        <a href="#contact" class="btn btn-solid"><span data-en="Start a project" data-zh="开始合作">Start a project</span><span class="btn-arrow">→</span></a>
+        <a href="#work" class="btn btn-text" data-en="See my work" data-zh="查看作品">See my work</a>
+        <a href="Hassan_Haider_Resume.pdf" class="btn btn-text" download data-en="Résumé ↓" data-zh="简历 ↓">Résumé ↓</a>
       </div>
     </div>
-    <div class="hero-portrait">
+    <div class="hero-portrait" data-sw>
       <div class="portrait-frame">
         <img src="images/formal dp.jpg" alt="Muhammad Hassan Haider">
       </div>
-      <div class="portrait-tag"><span class="dot"></span><span data-en="Open to AI/LLM &amp; Backend roles" data-zh="正在寻找 AI/LLM 与后端相关机会">Open to AI/LLM &amp; Backend roles</span></div>
+      <div class="portrait-tag"><span class="pulse-dot"></span><span data-en="Open to AI/LLM &amp; Backend roles" data-zh="正在寻找 AI/LLM 与后端机会">Open to AI/LLM &amp; Backend roles</span></div>
+    </div>
+    <div class="hero-stats">
+      <div class="stat" data-sw><span class="stat-num">5+</span><span class="stat-label" data-en="years shipping" data-zh="年交付经验">years shipping</span></div>
+      <div class="stat"><span class="stat-num" id="statProjects">21</span><span class="stat-label" data-en="projects built" data-zh="个项目">projects built</span></div>
+      <div class="stat" data-sw><span class="stat-num">70–90%</span><span class="stat-label" data-en="manual effort removed" data-zh="人工工作量减少">manual effort removed</span></div>
+      <div class="stat" data-sw><span class="stat-num">0</span><span class="stat-label" data-en="cloud calls needed" data-zh="云端调用依赖">cloud calls needed</span></div>
+    </div>
+    <div class="hero-strip">
+      <span data-sw data-en="Available for work" data-zh="可接受工作机会">Available for work</span>
+      <span data-sw data-en="Remote-first · China / Pakistan" data-zh="远程优先 · 中国 / 巴基斯坦">Remote-first · China / Pakistan</span>
+      <span data-sw data-en="Scroll to explore ↓" data-zh="向下滚动探索 ↓">Scroll to explore ↓</span>
     </div>
   </section>
 
-  <!-- ============ ABOUT ============ -->
-  <section class="section about" id="about">
+  <!-- ============ DOORS (work) ============ -->
+  <section class="section doors-section" id="work">
+    <div class="section-head center">
+      <p class="section-eyebrow" data-sw data-en="SELECTED WORK" data-zh="精选作品">SELECTED WORK</p>
+      <h2 class="big-title" data-sw data-en="Magic happens behind the doors" data-zh="魔法藏在门后">Magic happens behind the doors</h2>
+      <p class="section-sub" data-sw data-en="Four rooms, one for each kind of system I build. Pick a door." data-zh="四个房间，对应我构建的四类系统。选一扇门吧。">Four rooms, one for each kind of system I build. Pick a door.</p>
+    </div>
+    <div class="doors-stage">
+      <div class="doors-row" id="doorsRow"></div>
+      <div class="door-floor"></div>
+      <div class="door-panel" id="doorPanel" data-sw></div>
+    </div>
+  </section>
+
+  <!-- ============ PROJECT INDEX ============ -->
+  <section class="section index-section" id="index">
     <div class="section-head">
-      <p class="section-eyebrow" data-en="ABOUT" data-zh="关于我">ABOUT</p>
-      <h2 data-en="From ETL scripts to autonomous agents" data-zh="从 ETL 脚本到自治智能体">From ETL scripts to autonomous agents</h2>
+      <p class="section-eyebrow" data-sw data-en="INDEX" data-zh="索引">INDEX</p>
+      <h2 data-sw data-en="Every project, one line each" data-zh="所有项目，一行一个">Every project, one line each</h2>
     </div>
-    <div class="about-grid">
-      <p class="about-text" data-en="I started as a Python/Django developer automating ETL pipelines and payment integrations — then moved deep into applied AI: Retrieval-Augmented Generation, agentic workflows, LLM fine-tuning (LoRA/DoRA), and local inference optimization with Ollama and vLLM. I like systems that don't need the cloud to be intelligent, and backends that don't fall over under load." data-zh="我从 Python/Django 开发起步，负责 ETL 管道自动化与支付集成，之后深入应用 AI 领域：检索增强生成（RAG）、智能体式工作流、大模型微调（LoRA/DoRA）以及基于 Ollama 与 vLLM 的本地推理优化。我偏爱那些不依赖云端也能保持“智能”的系统，以及在高负载下依然稳定的后端架构。">
-        I started as a Python/Django developer automating ETL pipelines and payment integrations — then moved deep into applied AI: Retrieval-Augmented Generation, agentic workflows, LLM fine-tuning (LoRA/DoRA), and local inference optimization with Ollama and vLLM. I like systems that don't need the cloud to be intelligent, and backends that don't fall over under load.
-      </p>
-      <div class="about-facts">
-        <div class="fact">
-          <span class="fact-k" data-en="Based in" data-zh="常驻地">Based in</span>
-          <span class="fact-v" data-en="Chengdu, China / Pakistan" data-zh="中国成都 / 巴基斯坦">Chengdu, China / Pakistan</span>
-        </div>
-        <div class="fact">
-          <span class="fact-k" data-en="Focus" data-zh="专注方向">Focus</span>
-          <span class="fact-v" data-en="RAG · Agentic AI · Fine-tuning · Backend" data-zh="RAG · 智能体 AI · 模型微调 · 后端">RAG · Agentic AI · Fine-tuning · Backend</span>
-        </div>
-        <div class="fact">
-          <span class="fact-k" data-en="Education" data-zh="学历">Education</span>
-          <span class="fact-v" data-en="BS Software Engineering, University of Gujrat" data-zh="古杰拉特大学 软件工程学士">BS Software Engineering, University of Gujrat</span>
-        </div>
-        <div class="fact">
-          <span class="fact-k" data-en="Languages" data-zh="语言">Languages</span>
-          <span class="fact-v" data-en="English, Urdu · working WeChat / Chinese contact" data-zh="英语、乌尔都语 · 可用微信联系">English, Urdu · working WeChat / Chinese contact</span>
-        </div>
-      </div>
-    </div>
+    <div class="index-filters" id="indexFilters" data-sw></div>
+    <ol class="index-list" id="indexList"></ol>
   </section>
 
-  <!-- ============ SKILLS ============ -->
+  <!-- ============ ABOUT + STACK ============ -->
   <section class="section skills" id="skills">
     <div class="section-head">
-      <p class="section-eyebrow" data-en="STACK" data-zh="技术栈">STACK</p>
-      <h2 data-en="The pipeline, end to end" data-zh="从数据到部署的完整链路">The pipeline, end to end</h2>
+      <p class="section-eyebrow" data-sw data-en="STACK" data-zh="技术栈">STACK</p>
+      <h2 data-sw data-en="The pipeline, end to end" data-zh="从数据到部署的完整链路">The pipeline, end to end</h2>
+    </div>
+    <div class="about-grid">
+      <p class="about-text" data-sw data-en="I started as a Python/Django developer automating ETL pipelines and payment integrations, then moved deep into applied AI: RAG, agentic workflows, LoRA/DoRA fine-tuning and local inference with Ollama and vLLM. Today I build the whole product — API design, React/Next.js UI and Dockerized deployment — using Claude Code and AI-assisted workflows to move fast." data-zh="我从 Python/Django 开发起步，负责 ETL 管道自动化与支付集成，之后深入应用 AI：RAG、智能体工作流、LoRA/DoRA 微调，以及基于 Ollama 与 vLLM 的本地推理。如今我负责完整产品 — 从 API 设计、React/Next.js 界面到 Docker 化部署 — 并借助 Claude Code 与 AI 辅助工作流快速推进。">
+        I started as a Python/Django developer automating ETL pipelines and payment integrations, then moved deep into applied AI: RAG, agentic workflows, LoRA/DoRA fine-tuning and local inference with Ollama and vLLM. Today I build the whole product — API design, React/Next.js UI and Dockerized deployment — using Claude Code and AI-assisted workflows to move fast.
+      </p>
+      <div class="about-facts" data-sw>
+        <div class="fact"><span class="fact-k" data-en="Based in" data-zh="常驻地">Based in</span><span class="fact-v" data-en="China / Pakistan" data-zh="中国 / 巴基斯坦">China / Pakistan</span></div>
+        <div class="fact"><span class="fact-k" data-en="Focus" data-zh="专注方向">Focus</span><span class="fact-v" data-en="RAG · Agentic AI · Fine-tuning · Full stack" data-zh="RAG · 智能体 AI · 微调 · 全栈">RAG · Agentic AI · Fine-tuning · Full stack</span></div>
+        <div class="fact"><span class="fact-k" data-en="Languages" data-zh="语言">Languages</span><span class="fact-v" data-en="Urdu &amp; Punjabi (native) · English (professional) · Chinese (HSK 1)" data-zh="乌尔都语、旁遮普语（母语）· 英语（工作语言）· 中文（HSK 1）">Urdu &amp; Punjabi (native) · English (professional) · Chinese (HSK 1)</span></div>
+      </div>
     </div>
     <div class="skills-grid" id="skillsGrid"></div>
   </section>
 
   <!-- ============ EXPERIENCE ============ -->
-  <section class="section experience" id="experience">
-    <div class="section-head">
-      <p class="section-eyebrow" data-en="EXPERIENCE" data-zh="工作经历">EXPERIENCE</p>
-      <h2 data-en="Where the code ran in production" data-zh="代码真正上线运行的地方">Where the code ran in production</h2>
+  <section class="section story" id="experience">
+    <div class="story-grid">
+      <div class="story-sticky">
+        <p class="section-eyebrow" data-en="MY STORY" data-zh="我的经历">MY STORY</p>
+        <h2 data-en="Let's go back in time." data-zh="让我们回到过去。">Let's go back in time.</h2>
+        <div class="story-year" id="storyYear" aria-live="polite">2026</div>
+        <p class="story-range" id="storyRange"></p>
+      </div>
+      <div class="timeline" id="timeline"></div>
     </div>
-    <div class="timeline" id="timeline"></div>
-  </section>
-
-  <!-- ============ PROJECTS ============ -->
-  <section class="section projects" id="projects">
-    <div class="section-head">
-      <p class="section-eyebrow" data-en="FEATURED PROJECTS" data-zh="重点项目">FEATURED PROJECTS</p>
-      <h2 data-en="Systems built from scratch" data-zh="从零构建的系统">Systems built from scratch</h2>
-    </div>
-    <div class="featured-grid" id="featuredGrid"></div>
-
-    <div class="section-head more-head">
-      <p class="section-eyebrow" data-en="MORE PROJECTS" data-zh="更多项目">MORE PROJECTS</p>
-      <h2 data-en="Backend &amp; automation work" data-zh="后端与自动化项目">Backend &amp; automation work</h2>
-    </div>
-    <div class="more-grid" id="moreGrid"></div>
   </section>
 
   <!-- ============ EDUCATION / CERTS ============ -->
   <section class="section education" id="education">
     <div class="section-head">
-      <p class="section-eyebrow" data-en="EDUCATION &amp; CERTIFICATIONS" data-zh="教育与认证">EDUCATION &amp; CERTIFICATIONS</p>
-      <h2 data-en="Foundations" data-zh="基础背景">Foundations</h2>
+      <p class="section-eyebrow" data-sw data-en="EDUCATION &amp; CERTIFICATIONS" data-zh="教育与认证">EDUCATION &amp; CERTIFICATIONS</p>
+      <h2 data-sw data-en="Foundations" data-zh="基础背景">Foundations</h2>
     </div>
     <div class="edu-grid">
-      <div class="edu-col">
+      <div class="edu-col" data-sw>
         <h3 data-en="Education" data-zh="教育经历">Education</h3>
         <div class="edu-item">
           <span class="edu-date">2016 – 2020</span>
-          <span class="edu-title" data-en="BS Software Engineering — University of Gujrat" data-zh="软件工程学士 — 古杰拉特大学">BS Software Engineering — University of Gujrat</span>
+          <span class="edu-title" data-en="BS Software Engineering — University of Gujrat (Hafiz Hayat Campus)" data-zh="软件工程学士 — 古杰拉特大学（Hafiz Hayat 校区）">BS Software Engineering — University of Gujrat (Hafiz Hayat Campus)</span>
         </div>
         <div class="edu-item">
           <span class="edu-date">2014 – 2016</span>
@@ -162,13 +187,13 @@
           <span class="edu-title" data-en="Matriculation in Science — Govt. High School No.2" data-zh="理科中学毕业 — 第二政府中学">Matriculation in Science — Govt. High School No.2</span>
         </div>
       </div>
-      <div class="edu-col">
+      <div class="edu-col" data-sw>
         <h3 data-en="Certifications" data-zh="认证证书">Certifications</h3>
-          <a class="cert-item" href="https://www.udemy.com/certificate/UC-a9d3ee53-86cf-4800-ba23-1a6cdd4882c0/" target="_blank" rel="noopener" data-en="Python — Complete Course for Beginners (Udemy)" data-zh="Python 零基础完整课程（Udemy）">Python — Complete Course for Beginners (Udemy)</a>
-          <a class="cert-item" href="https://www.udemy.com/certificate/UC-2497d805-682b-447a-b021-d718247e20ac/" target="_blank" rel="noopener" data-en="Python 3 — Beginner to Advanced (Udemy)" data-zh="Python 3：从入门到进阶（Udemy）">Python 3 — Beginner to Advanced (Udemy)</a>
-          <a class="cert-item" href="https://www.udemy.com/certificate/UC-e171edf6-5105-4aaf-a5b0-638bff08b9d0/" target="_blank" rel="noopener" data-en="Python &amp; Django Framework — Complete Course (Udemy)" data-zh="Python 与 Django 框架完整课程（Udemy）">Python &amp; Django Framework — Complete Course (Udemy)</a>
-          <a class="cert-item" href="https://www.udemy.com/certificate/UC-e65f736d-a94a-4582-a27b-8e99e8418926/" target="_blank" rel="noopener" data-en="SQL Programming &amp; MySQL (Udemy)" data-zh="SQL 编程与 MySQL（Udemy）">SQL Programming &amp; MySQL (Udemy)</a>
-          <a class="cert-item" href="https://www.udemy.com/certificate/UC-348ed9f9-3547-42c5-ac42-6f81b6272921/" target="_blank" rel="noopener" data-en="Web Scraping with BeautifulSoup (Udemy)" data-zh="使用 BeautifulSoup 进行网页抓取（Udemy）">Web Scraping with BeautifulSoup (Udemy)</a>
+        <a class="cert-item" href="https://www.udemy.com/certificate/UC-a9d3ee53-86cf-4800-ba23-1a6cdd4882c0/" target="_blank" rel="noopener" data-en="Python — Complete Course for Beginners (Udemy) ↗" data-zh="Python 零基础完整课程（Udemy）↗">Python — Complete Course for Beginners (Udemy) ↗</a>
+        <a class="cert-item" href="https://www.udemy.com/certificate/UC-2497d805-682b-447a-b021-d718247e20ac/" target="_blank" rel="noopener" data-en="Python 3 — Beginner to Advanced (Udemy) ↗" data-zh="Python 3：从入门到进阶（Udemy）↗">Python 3 — Beginner to Advanced (Udemy) ↗</a>
+        <a class="cert-item" href="https://www.udemy.com/certificate/UC-e171edf6-5105-4aaf-a5b0-638bff08b9d0/" target="_blank" rel="noopener" data-en="Python &amp; Django Framework — Complete Course (Udemy) ↗" data-zh="Python 与 Django 框架完整课程（Udemy）↗">Python &amp; Django Framework — Complete Course (Udemy) ↗</a>
+        <a class="cert-item" href="https://www.udemy.com/certificate/UC-e65f736d-a94a-4582-a27b-8e99e8418926/" target="_blank" rel="noopener" data-en="SQL Programming &amp; MySQL (Udemy) ↗" data-zh="SQL 编程与 MySQL（Udemy）↗">SQL Programming &amp; MySQL (Udemy) ↗</a>
+        <a class="cert-item" href="https://www.udemy.com/certificate/UC-348ed9f9-3547-42c5-ac42-6f81b6272921/" target="_blank" rel="noopener" data-en="Web Scraping with BeautifulSoup (Udemy) ↗" data-zh="使用 BeautifulSoup 进行网页抓取（Udemy）↗">Web Scraping with BeautifulSoup (Udemy) ↗</a>
       </div>
     </div>
   </section>
@@ -176,25 +201,24 @@
   <!-- ============ CONTACT ============ -->
   <section class="section contact" id="contact">
     <div class="contact-inner">
-      <p class="section-eyebrow" data-en="CONTACT" data-zh="联系方式">CONTACT</p>
-      <h2 data-en="Let's build something that runs on its own." data-zh="一起构建能自主运行的系统。">Let's build something that runs on its own.</h2>
-      <p class="contact-sub" data-en="Open to AI/LLM Engineer, Generative AI Developer, and Backend + AI roles." data-zh="欢迎 AI/LLM 工程师、生成式 AI 开发工程师，以及后端 + AI 相关岗位机会。">Open to AI/LLM Engineer, Generative AI Developer, and Backend + AI roles.</p>
-      <div class="contact-links">
-        <a href="mailto:itshassanbutt@gmail.com" class="contact-link">
-          <span class="contact-k">Email</span><span class="contact-v">itshassanbutt@gmail.com</span>
-        </a>
-        <a href="tel:+923107380784" class="contact-link">
-          <span class="contact-k" data-en="Phone" data-zh="电话">Phone</span><span class="contact-v">+92 310 7380784</span>
-        </a>
-        <a href="https://github.com/Hassan-Butt4356" target="_blank" rel="noopener" class="contact-link">
-          <span class="contact-k">GitHub</span><span class="contact-v">github.com/Hassan-Butt4356</span>
-        </a>
-        <a href="https://www.linkedin.com/in/hassan-haider-backend" target="_blank" rel="noopener" class="contact-link">
-          <span class="contact-k">LinkedIn</span><span class="contact-v">m-hassan-haider</span>
-        </a>
-        <div class="contact-link static">
-          <span class="contact-k">WeChat</span><span class="contact-v">hassanhaider4356</span>
-        </div>
+      <p class="section-eyebrow" data-sw><span class="pulse-dot"></span> <span data-en="AVAILABLE · NEW CONVERSATIONS" data-zh="可合作 · 欢迎联系">AVAILABLE · NEW CONVERSATIONS</span></p>
+      <h2 class="contact-title" data-sw>
+        <span data-en="Got a project?" data-zh="有项目想法？">Got a project?</span>
+        <span class="contact-title-2" data-en="Let's build it together." data-zh="一起把它做出来。">Let's build it together.</span>
+      </h2>
+      <p class="contact-sub" data-sw data-en="Open to Full Stack AI/LLM Engineer, Generative AI and Backend + AI roles. Tell me what you're building and I'll get back within a day." data-zh="欢迎全栈 AI/大模型工程师、生成式 AI 以及后端 + AI 相关岗位。告诉我你在做什么，我会在一天内回复。">Open to Full Stack AI/LLM Engineer, Generative AI and Backend + AI roles. Tell me what you're building and I'll get back within a day.</p>
+      <div class="hero-ctas" data-sw>
+        <a href="mailto:itshassanbutt@gmail.com" class="btn btn-solid"><span data-en="Start a project" data-zh="开始合作">Start a project</span><span class="btn-arrow">→</span></a>
+        <a href="Hassan_Haider_Resume.pdf" class="btn btn-text" download data-en="Download résumé ↓" data-zh="下载简历 ↓">Download résumé ↓</a>
+      </div>
+      <div class="contact-links" data-sw>
+        <a href="mailto:itshassanbutt@gmail.com" class="contact-link"><span class="contact-k">Email</span><span class="contact-v">itshassanbutt@gmail.com</span></a>
+        <a href="tel:+923107380784" class="contact-link"><span class="contact-k" data-en="Phone · Pakistan" data-zh="电话 · 巴基斯坦">Phone · Pakistan</span><span class="contact-v">+92 310 7380784</span></a>
+        <a href="https://wa.me/923107380784" target="_blank" rel="noopener" class="contact-link"><span class="contact-k">WhatsApp</span><span class="contact-v">+92 310 7380784 ↗</span></a>
+        <a href="tel:+8614708033803" class="contact-link"><span class="contact-k" data-en="Phone · China" data-zh="电话 · 中国">Phone · China</span><span class="contact-v">+86 147 0803 3803</span></a>
+        <a href="https://github.com/Hassan-Butt4356" target="_blank" rel="noopener" class="contact-link"><span class="contact-k">GitHub</span><span class="contact-v">Hassan-Butt4356 ↗</span></a>
+        <a href="https://www.linkedin.com/in/hassan-haider-backend/" target="_blank" rel="noopener" class="contact-link"><span class="contact-k">LinkedIn</span><span class="contact-v">m-hassan-haider ↗</span></a>
+        <div class="contact-link static"><span class="contact-k">WeChat</span><span class="contact-v">hassanhaider4356</span></div>
       </div>
     </div>
   </section>
@@ -202,10 +226,54 @@
 </main>
 
 <footer class="site-footer">
-  <span data-en="© 2026 Muhammad Hassan Haider. Built with Python-brain, shipped as static HTML." data-zh="© 2026 Muhammad Hassan Haider · 由 Python 思维构建，以静态 HTML 呈现。">© 2026 Muhammad Hassan Haider. Built with Python-brain, shipped as static HTML.</span>
+  <span data-en="© 2026 Muhammad Hassan Haider. Rebuilt by a swarm of agents, shipped as static HTML." data-zh="© 2026 Muhammad Hassan Haider · 由一群智能体重建，以静态 HTML 呈现。">© 2026 Muhammad Hassan Haider. Rebuilt by a swarm of agents, shipped as static HTML.</span>
 </footer>
+
+<!-- ============ CATEGORY SCREEN (behind a door) ============ -->
+<div class="screen cat-screen" id="catScreen" role="dialog" aria-modal="true" aria-hidden="true" tabindex="-1">
+  <div class="screen-scroll" id="catScroll">
+    <div class="screen-bar">
+      <a href="#work" class="back-link" data-close>← <span data-en="Back to the doors" data-zh="回到门前">Back to the doors</span></a>
+      <span class="screen-crumb" id="catCrumb"></span>
+    </div>
+    <div class="screen-body" id="catBody"></div>
+  </div>
+</div>
+
+<!-- ============ PROJECT DETAIL SCREEN ============ -->
+<div class="screen proj-screen" id="projScreen" role="dialog" aria-modal="true" aria-hidden="true" tabindex="-1">
+  <div class="screen-scroll" id="projScroll">
+    <div class="sw-layer" id="projLayer" aria-hidden="true"></div>
+    <div class="screen-bar">
+      <a href="#work" class="back-link" id="projBack">←</a>
+      <div class="screen-bar-right">
+        <a class="icon-btn" id="projPrev" aria-label="Previous project">‹</a>
+        <span class="screen-crumb" id="projCount"></span>
+        <a class="icon-btn" id="projNext" aria-label="Next project">›</a>
+        <a href="#work" class="icon-btn" aria-label="Close" data-close>✕</a>
+      </div>
+    </div>
+    <div class="screen-body" id="projBody"></div>
+  </div>
+</div>
+
+<!-- door → screen zoom portal -->
+<div class="portal" id="portal" aria-hidden="true"></div>
+
+<!-- ============ SWARM CONTROL BAR ============ -->
+<div class="sw-bar" id="swBar" aria-live="polite">
+  <span class="sw-dots" id="swDots"></span>
+  <span class="sw-status" id="swStatus">Scanning page…</span>
+  <span class="sw-meter"><span class="sw-meter-fill" id="swMeter"></span></span>
+  <span class="sw-count" id="swCount">0 / 0</span>
+  <button class="sw-btn" id="swSpeed" title="Speed">1x</button>
+  <button class="sw-btn" id="swRebuild" title="Rebuild the page with the agent swarm">⟲ <span data-en="Rebuild" data-zh="重建">Rebuild</span></button>
+  <button class="sw-btn" id="swToggle" title="Agents on scroll">on</button>
+  <button class="sw-btn sw-x" id="swSkip" title="Skip" aria-label="Skip build">✕</button>
+</div>
 
 <script src="content.js"></script>
 <script src="script.js"></script>
+<script src="fx3d.js"></script> <!-- 3D layer (delete this line + fx3d.css line to remove) -->
 </body>
 </html>
