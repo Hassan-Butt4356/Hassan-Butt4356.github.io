@@ -49,13 +49,13 @@
   $("#langToggle").addEventListener("click", () => applyLang(lang === "en" ? "zh" : "en"));
 
   /* =========================================================
-     CLOCK (local time in China)
+     CLOCK (local time in Pakistan)
      ========================================================= */
   function tickClock() {
     const now = new Date();
     try {
-      const t = new Intl.DateTimeFormat("en-US", { timeZone: "Asia/Shanghai", hour: "numeric", minute: "2-digit" }).format(now);
-      const d = new Intl.DateTimeFormat("en-GB", { timeZone: "Asia/Shanghai", day: "2-digit", month: "short", year: "numeric" }).format(now);
+      const t = new Intl.DateTimeFormat("en-US", { timeZone: "Asia/Karachi", hour: "numeric", minute: "2-digit" }).format(now);
+      const d = new Intl.DateTimeFormat("en-GB", { timeZone: "Asia/Karachi", day: "2-digit", month: "short", year: "numeric" }).format(now);
       $("#clockTime").textContent = t.replace(" ", "").toLowerCase();
       $("#clockDate").textContent = d;
     } catch (e) { /* very old browsers: leave placeholder */ }
@@ -263,9 +263,10 @@
      ========================================================= */
   const catScreen = $("#catScreen");
   const projScreen = $("#projScreen");
-  let openCatId = null, openProjId = null;
+  const contactScreen = $("#contactScreen");
+  let openCatId = null, openProjId = null, contactOpen = false;
 
-  function lock() { document.body.classList.toggle("locked", !!(openCatId || openProjId)); }
+  function lock() { document.body.classList.toggle("locked", !!(openCatId || openProjId || contactOpen)); }
   function show(screen, on) {
     screen.classList.toggle("open", on);
     screen.setAttribute("aria-hidden", on ? "false" : "true");
@@ -365,6 +366,16 @@
     const h = decodeURIComponent(location.hash || "");
     let m;
     const prevProj = openProjId;
+    if (h === "#/contact") {
+      const was = contactOpen;
+      contactOpen = true;
+      show(contactScreen, true);
+      if (!was && !rerenderOnly) { $("#contactScroll").scrollTop = 0; contactScreen.focus({ preventScroll: true }); }
+      lock();
+      return;
+    }
+    const closedContact = contactOpen;
+    if (contactOpen) { contactOpen = false; show(contactScreen, false); }
     if ((m = h.match(/^#\/project\/([\w-]+)/)) && projById(m[1])) {
       const p = projById(m[1]);
       if (openCatId && !p.cats.includes(openCatId)) { openCatId = null; show(catScreen, false); }
@@ -387,7 +398,7 @@
       setActiveDoor(openCatId);
       if (changed && !rerenderOnly) { $("#catScroll").scrollTop = 0; catScreen.focus({ preventScroll: true }); }
     } else {
-      const wasOpen = openCatId || openProjId;
+      const wasOpen = openCatId || openProjId || closedContact;
       openCatId = null; openProjId = null;
       show(catScreen, false); show(projScreen, false);
       if (wasOpen && !rerenderOnly) {
@@ -402,10 +413,50 @@
   window.addEventListener("hashchange", () => route(false));
   document.addEventListener("keydown", (e) => {
     if (e.key !== "Escape") return;
+    if (contactOpen) { location.hash = "#/"; return; }
     if (openProjId && openCatId) location.hash = `#/doors/${openCatId}`;
     else if (openProjId || openCatId) location.hash = "#/";
   });
-  $$("[data-close]").forEach((a) => a.setAttribute("href", a.classList.contains("back-link") ? "#work" : "#/"));
+  $$("[data-close]").forEach((a) => !a.closest("#contactScreen") && a.setAttribute("href", a.classList.contains("back-link") ? "#work" : "#/"));
+
+  /* =========================================================
+     CONTACT SCREEN — copy buttons + project brief
+     ========================================================= */
+  $$("[data-copy]").forEach((b) => b.addEventListener("click", async () => {
+    try { await navigator.clipboard.writeText(b.dataset.copy); } catch (e) {
+      const t = document.createElement("textarea"); t.value = b.dataset.copy; document.body.appendChild(t); t.select();
+      try { document.execCommand("copy"); } catch (e2) {} t.remove();
+    }
+    b.textContent = lang === "zh" ? "已复制 ✓" : "Copied ✓";
+    b.classList.add("ok");
+    setTimeout(() => { b.textContent = b.getAttribute(lang === "zh" ? "data-zh" : "data-en"); b.classList.remove("ok"); }, 1600);
+  }));
+  const brief = $("#briefForm");
+  const MAIL = $('#contactScreen a[href^="mailto:"]').getAttribute("href").slice(7);
+  const WA = $('#contactScreen a[href^="https://wa.me/"]').getAttribute("href");
+  brief.addEventListener("submit", (e) => {
+    e.preventDefault();
+    const via = (e.submitter && e.submitter.dataset.via) || "whatsapp";
+    const f = new FormData(brief);
+    const name = (f.get("name") || "").trim(), msg = (f.get("message") || "").trim();
+    const err = $("#briefError");
+    err.hidden = !!(name && msg);
+    if (!name || !msg) { (name ? brief.message : brief.name).focus(); return; }
+    const types = f.getAll("type");
+    const contact = (f.get("contact") || "").trim();
+    const lines = ["Hi Hassan, I have a project for you.", "", "Name: " + name];
+    if (contact) lines.push("Contact: " + contact);
+    if (types.length) lines.push("Looking for: " + types.join(", "));
+    if (f.get("timeline")) lines.push("Timeline: " + f.get("timeline"));
+    lines.push("", msg);
+    const text = lines.join("\n");
+    if (via === "email") {
+      location.href = "mailto:" + MAIL + "?subject=" + encodeURIComponent("Project enquiry from " + name) + "&body=" + encodeURIComponent(text);
+    } else {
+      window.open(WA + "?text=" + encodeURIComponent(text), "_blank", "noopener");
+    }
+  });
+  brief.addEventListener("input", () => { $("#briefError").hidden = true; });
 
   /* =========================================================
      HEADER / NAV
